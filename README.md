@@ -1,6 +1,9 @@
-# B) Déployer la base de donnée
+# REPONSES
 
-## 1) Déployer la base de données (mode standalone)
+
+## B) Déployer la base de donnée
+
+### 1) Déployer la base de données (mode standalone)
 
 **docker pull mongo:latest** #téléchargement de la derrnière image de mongo trouvée sur le docker hub
 **docker run -name mongodevops -d mongo:latest** #création du conteneur et on le run, *mongodevops* étant le nom donnée à notre conteneur
@@ -69,7 +72,7 @@ Après avoir suivit la correction, nous avons approté quelques modifications.
 
 après lancement de la commande **docker-compose up**, nous avons obtenu plusieurs erreurs qui ont pu être corrigé après suppression de nos conteneurs avec la commande **docker-compose down**.
 
-## 2) Mongo Compass
+### 2) Mongo Compass
 
 Mongo Compass avait déjà été installé sur l'ordinateur sur lequel nous travaillions, ainsi que mongodb. Lorsque nous faisions la connexion avec mongo compass à l'adresse *mongodb://localhost:27017*, nous n'étions pas connecté à mongodb sur docker mais plutôt au mongodb qui est installé localement. Avec un peu d'aide, nous avons compris qu'il y avait un conflit car le mongodb installé localement et celui du conteneur utilisaient le même port d'où la modification apportée au fichier docker-compose présenté ci-dessous.
 
@@ -96,7 +99,7 @@ Mongo Compass avait déjà été installé sur l'ordinateur sur lequel nous trav
     *environment:*
       *ME_CONFIG_MONGODB_URL: mongodb://${MONGODB_USERNAME}:${MONGODB_PASSWORD}@mongo:27017/*
 
-# C) Déploiement de l'API
+## C) Déploiement de l'API
 
 L'un de nous a passé énormément de temps a installer docker pendant que l'autre est arrivé très retard à cause de la grève des taxis. Mis à part cela, le plus gros soucis a été l'intallation de node : node s'installait mais la commande *npm* ne marchait pas (il s'agissait d'un problème de version et nous n'arrivions pas à installer la version la plus récente de node). Par nous ne savons quel méthode, nous avons réussi à installer et à utiliser *yarn* cependant, la commande *yarn build* n'a pas marché à cause de l'absence de npm. Finalement vers la fin de la séance, nous avons réussi à installer grâce à de l'aide, une version récente de node et npm.
 
